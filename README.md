@@ -1,10 +1,12 @@
 # OQeury
-OQuery is a javascript framework like Jquery
 
+OQuery is a javascript framework like Jquery
+```
 As using $ in Jquery, we use "O"(Big O) like O(element)
+```
 
 Method of "O" are as follows with example
-
+```
 O(element).hide();
 O(element).show();
 O(element).hide();
@@ -28,5 +30,4 @@ O(element).css({attributekey1:attributevalue2,attributekey2:attributevalue2}) wi
 //O.html() function has no argument and one argument
 O(element).html() this will returns what element contains in it as html;
 O(element).html("HTML CONTENT") this will set html within the element
-
-
+```
