@@ -5,7 +5,7 @@ OQuery is a javascript framework like Jquery
 As using $ in Jquery, we use "O"(Big O) like O(element)
 ```
 
-Method of "O" are as follows with example
+Methods of "O" are as follows with example
 ```
 O(element).hide();
 O(element).show();
