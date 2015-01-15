@@ -28,7 +28,3 @@ O(element).css({attributekey1:attributevalue2,attributekey2:attributevalue2}) wi
 //O.html() function has no argument and one argument
 O(element).html() this will returns what element contains in it as html;
 O(element).html("HTML CONTENT") this will set html within the element
-
-
-
-
