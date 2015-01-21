@@ -60,38 +60,29 @@
 				var arr=s.split(",");
 				for(var i in arr){
 					var arr[i]=arr[i].replace(/\s+/g,'');
-					if(arr[i].indexOf("#")!=-1 && arr[i].indexOf("#")==0){
-						selector.push(this.selectorID(arr[i]));
-					}else if(arr[i].indexOf(".")!=-1 && arr[i].indexOf(".")==0){
-						selector.push(this.selectorClass(arr[i])[0]);
-					}else if(arr[i].indexOf("#")==-1 && arr[i].indexOf(".")==-1){
-						selector.push(this.selectorTag(arr[i])[0]);
-					}
+					arr[i]=this.identifyTag(arr[i]);
 				}
 			}else if(s.indexOf(" ")==-1){
 				var arr=s.split(" ");
 				var arr_length=arr.length;
 				for(var i=0;i<arr_length;i++){
-					if(arr[i].indexOf("#")!=-1 && arr[i].indexOf("#")==0){
-						arr[i]=this.selectorID(arr[i]);
-					}else if(arr[i].indexOf(".")!=-1 && arr[i].indexOf(".")==0){
-						arr[i]=this.selectorClass(arr[i])[0];
-					}else if(arr[i].indexOf("#")==-1 && arr[i].indexOf(".")==-1){
-						arr[i]=this.selectorTag(arr[i])[0];
-					}
+					arr[i]=this.identifyTag(arr[i]);
 				}
 				selector.push(eval(arr.join(".")));
 			}else{
-				if(s.indexOf("#")!=-1 && s.indexOf("#")==0){
-					selector.push(this.selectorID(s));
-				}else if(s.indexOf(".")!=-1 && s.indexOf(".")==0){
-					selector.push(this.selectorClass(s)[0]);
-				}else if(s.indexOf("#")==-1 && s.indexOf(".")==-1){
-					selector.push(this.selectorTag(s)[0]);
-				}
+				selector.push(this.identifyTag(s));
 			}
 			return selector;
 		},
+		identifyTag:function(s){
+			if(s.indexOf("#")!=-1 && s.indexOf("#")==0){
+				return this.selectorID(s);
+			}else if(s.indexOf(".")!=-1 && s.indexOf(".")==0){
+				return this.selectorClass(s)[0];
+			}else if(s.indexOf("#")==-1 && s.indexOf(".")==-1){
+				return this.selectorTag(s)[0];
+			}
+		}
 		selectorID:function(s){
 			return document.getElementById(s);
 		},
