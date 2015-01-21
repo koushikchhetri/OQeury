@@ -82,7 +82,7 @@
 			}else if(s.indexOf("#")==-1 && s.indexOf(".")==-1){
 				return this.selectorTag(s)[0];
 			}
-		}
+		},
 		selectorID:function(s){
 			return document.getElementById(s);
 		},
