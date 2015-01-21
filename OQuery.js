@@ -41,11 +41,67 @@
 	
 	var KCFramework=function(s){
 		this.arr_selectors=[];
-			var selector=document.querySelectorAll(s);
-			for(var i=0;i<selector.length;i++){
-				this.arr_selectors[i]=selector[i];
-			}
+		var selector=[];
+		if(browser!='ie'){
+			//As the following statement does not work in IE<9
+			selector=document.querySelectorAll(s);
+		}else{
+			selector=this.browserIE(String.trim(s));
+		}
+		
+		for(var i=0;i<selector.length;i++){
+			this.arr_selectors[i]=selector[i];
+		}
 	};
+	KCFramework.prototype={
+		browserIE:function(s){
+			var selector=[];
+			if(s.indexOf(",")>-1){
+				var arr=s.split(",");
+				for(var i in arr){
+					var arr[i]=arr[i].replace(/\s+/g,'');
+					if(arr[i].indexOf("#")!=-1 && arr[i].indexOf("#")==0){
+						selector.push(this.selectorID(arr[i]));
+					}else if(arr[i].indexOf(".")!=-1 && arr[i].indexOf(".")==0){
+						selector.push(this.selectorClass(arr[i])[0]);
+					}else if(arr[i].indexOf("#")==-1 && arr[i].indexOf(".")==-1){
+						selector.push(this.selectorTag(arr[i])[0]);
+					}
+				}
+			}else if(s.indexOf(" ")==-1){
+				var arr=s.split(" ");
+				var arr_length=arr.length;
+				for(var i=0;i<arr_length;i++){
+					if(arr[i].indexOf("#")!=-1 && arr[i].indexOf("#")==0){
+						arr[i]=this.selectorID(arr[i]);
+					}else if(arr[i].indexOf(".")!=-1 && arr[i].indexOf(".")==0){
+						arr[i]=this.selectorClass(arr[i])[0];
+					}else if(arr[i].indexOf("#")==-1 && arr[i].indexOf(".")==-1){
+						arr[i]=this.selectorTag(arr[i])[0];
+					}
+				}
+				selector.push(eval(arr.join(".")));
+			}else{
+				if(s.indexOf("#")!=-1 && s.indexOf("#")==0){
+					selector.push(this.selectorID(s));
+				}else if(s.indexOf(".")!=-1 && s.indexOf(".")==0){
+					selector.push(this.selectorClass(s)[0]);
+				}else if(s.indexOf("#")==-1 && s.indexOf(".")==-1){
+					selector.push(this.selectorTag(s)[0]);
+				}
+			}
+			return selector;
+		},
+		selectorID:function(s){
+			return document.getElementById(s);
+		},
+		selectorClass:function(s){
+			return document.getElementsByClassName(s);
+		},
+		selectorTag:function(s){
+			return document.getElementsByTagName(s);
+		}
+	}
 	
 	O.fn=KCFramework.prototype={
 		hide:function(){
