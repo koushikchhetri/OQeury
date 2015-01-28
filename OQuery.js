@@ -218,7 +218,9 @@
 		hasClass:function(classname){
 			return this.arr_selectors[0].className && new RegExp("(^|\\s)" + className + "(\\s|$)").test(this.arr_selectors[0].className);
 		},
-		
+		hasId:function(id){
+			return this.arr_selectors[0].getAttribute("id") && new RegExp("(^|\\s)" + id + "(\\s|$)").test(this.arr_selectors[0].getAttribute("id"));
+		},
 		addClass:function(classname){
 			var length=this.arr_selectors.length;
 			while(length--){
