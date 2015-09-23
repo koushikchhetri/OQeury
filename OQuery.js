@@ -2,7 +2,7 @@
  * OQuery JavaScript Library v1.0
  * http://koushikchhetri.com/
  *
- * Author Koushik Chhetri
+ * Author: Koushik Chhetri
  * Email: care.koushik.chhetri@gmail.com
  *
  * Copyright 20014
