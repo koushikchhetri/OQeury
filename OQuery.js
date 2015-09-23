@@ -29,7 +29,7 @@
 	
 	var O=function(selector,context){
 		try{
-		return new KCFramework(selector);
+		return new KCFramework(selector,context);
 		}catch(e){
 			
 		}
@@ -39,7 +39,7 @@
 	O.author=author;
 	O.browser=browser;
 	
-	var KCFramework=function(s){
+	var KCFramework=function(s,context){
 		this.arr_selectors=[];
 		var selector=[];
 		if(browser!='ie'){
